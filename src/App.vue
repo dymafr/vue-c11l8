@@ -1,8 +1,9 @@
 <template>
   <form @submit="mySubmit">
     <div>
-      <input v-model="usernameValue" type="text" placeholder="Prénom" />
+      <input v-model="emailValue" type="email" placeholder="Prénom" />
     </div>
+    <pre>{{ errorMessage }}</pre>
     <button>Envoi</button>
   </form>
 </template>
@@ -17,14 +18,15 @@ const { handleSubmit } = useForm();
 const mySubmit = handleSubmit(
   (values, actions) => {
     console.log(values);
+    actions.seFieldError('email', "L'email existe déjà");
   },
   (errors) => {
     console.log(errors);
   }
 );
 
-const { value: usernameValue, errorMessage } = useField(
-  'username',
+const { value: emailValue, errorMessage } = useField(
+  'email',
   toFieldValidator(z.string().min(5, { message: 'Trop court !' }))
 );
 </script>
