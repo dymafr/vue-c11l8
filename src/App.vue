@@ -18,7 +18,7 @@ const { handleSubmit } = useForm();
 const mySubmit = handleSubmit(
   (values, actions) => {
     console.log(values);
-    actions.seFieldError('email', "L'email existe déjà");
+    actions.setFieldError('email', "L'email existe déjà");
   },
   (errors) => {
     console.log(errors);
